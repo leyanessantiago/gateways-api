@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  gateways-api:
+    container_name: gateways-api
+    image: gateways-api
+    build:
+      context: .
+      target: production
+    ports:
+      - "3001:3000"
+    depends_on:
+      - gateways-mongodb
+    env_file:
+      - .env.prod
+
+  gateways-mongodb:
+    image: mongo
+    container_name: gateways-mongodb
+    restart: always
+    ports:
+      - "27017:27017"
+    env_file:
+      - .env.prod
+    volumes:
+      - ./data/db:/data/db
+
+volumes:
+  gateways-mongodb:
+    name: gateways-db

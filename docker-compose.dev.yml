@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  gateways-api-dev:
+    container_name: gateways-api-dev
+    image: gateways-api-dev
+    build:
+      context: .
+      target: development
+    command: npm run start:dev
+    volumes:
+      - ./src:/app/src
+    ports:
+      - "3001:3000"
+    depends_on:
+      - gateways-mongodb-dev
+    env_file:
+      - .env.dev
+
+  gateways-mongodb-dev:
+    image: mongo
+    container_name: gateways-mongodb-dev
+    restart: always
+    ports:
+      - "27017:27017"
+    env_file:
+      - .env.dev
+    volumes:
+      - ./data_dev/db:/data/db
+
+volumes:
+  gateways-mongodb-dev:
+    name: gateways-db-dev
