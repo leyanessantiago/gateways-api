@@ -2,6 +2,22 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
+## Environment
+
+See `.env.example` file
+
+Create a `.env.dev` and `.env.prod` files for development and production respectively
+
+## Docker
+
+For development run:
+
+## `npm run docker:dev`
+
+For production run:
+
+## `npm run docker:prod`
+
 ## Installation
 
 ```bash
